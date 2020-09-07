@@ -1,6 +1,6 @@
 /*!
-    * Avara Solutions - SB Admin v6.0.1 (https://startbootstrap.com/templates/sb-admin)
-    * Copyright 2013-2020 Avara Solutions
+    * CMS One - SB Admin v6.0.1 (https://startbootstrap.com/templates/sb-admin)
+    * Copyright 2013-2020 CMS One
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
     */
     (function($) {

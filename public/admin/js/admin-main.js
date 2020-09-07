@@ -603,7 +603,7 @@ $(document).ready(function () {
         console.log('done', resp);
         showToastMessage({
           title: 'Done!',
-          body: 'Your password has been reset, login with your new password to continue to Avara Solutions'
+          body: 'Your password has been reset, login with your new password to continue to CMS One'
         });
         setTimeout(function () {
           window.location.href = '/admin/login';
