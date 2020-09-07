@@ -1,6 +1,6 @@
 {
   "name": "cmsone-website",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "CMS One website",
   "main": "index.js",
   "scripts": {

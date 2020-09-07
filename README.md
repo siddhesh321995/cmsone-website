@@ -1,7 +1,7 @@
 # CMS One API
 > Simple light weight node-express based API wrapper
 
-## Usage:
+## Installation:
 
 ```
 npm install cmsone-website --save
@@ -11,7 +11,7 @@ npm install cmsone-website --save
 const { Main } = require('cmsone-website');
 ```
 
-Setup your API environment
+## Serverside setup
 ```
 const express = require('express');
 const app = express();
@@ -25,6 +25,22 @@ Main.setup(app, {
         EMAIL_PASSWORD: 'password'
     }
 });
+```
+
+## Clientside setup
+- Copy and Paste public folder to your public root directory
+- Specify valid API_URL from public\js\common\app.js
+- Specify valid auth_key from data\auth.json
+- Navigate to /admin from browser to complete setup using GUI
+
+```
+    <!-- Add following scripts to your public html pages to enable tracking and analysis -->
+    <script src="/js/common/polyfill.min.js"></script>
+    <script src="/js/common/ajax.js"></script>
+    <script src="/js/common/browser.js"></script>
+    <script src="/js/common/app.js"></script>
+    <script src="/js/common/event-api.js"></script>
+    <script src="/js/common/app-bootstrapper.js"></script>
 ```
 
 ## Features:
