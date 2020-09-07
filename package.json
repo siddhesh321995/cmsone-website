@@ -1,0 +1,29 @@
+{
+  "name": "cmsone-website",
+  "version": "1.0.0",
+  "description": "CMS One website",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddhesh321995/cmsone-website.git"
+  },
+  "keywords": [
+    "CMSOne",
+    "CMS",
+    "Website"
+  ],
+  "author": "Siddhesh Kulkarni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siddhesh321995/cmsone-website/issues"
+  },
+  "homepage": "https://github.com/siddhesh321995/cmsone-website#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "mongodb": "^3.6.1",
+    "uuid": "^8.3.0"
+  }
+}
