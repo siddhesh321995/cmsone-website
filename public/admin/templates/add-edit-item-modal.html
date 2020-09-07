@@ -1,0 +1,47 @@
+<div class="modal fade" id="addEditItemModal" tabindex="-1" role="dialog" aria-labelledby="addEditItemModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEditItemModalLabel">Add/Edit item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="parent-item-para">This item will be added under folder
+          <strong class="parent-item-name"></strong>
+        </p>
+        <form class="add-edit-item">
+          <div class="form-group">
+            <label for="addedit-item-name" class="col-form-label">Item name: *</label>
+            <input type="text" class="form-control" id="addedit-item-name">
+          </div>
+          <div class="form-group">
+            <label for="addedit-item-desc" class="col-form-label">Item description:</label>
+            <textarea class="form-control" id="addedit-item-desc"></textarea>
+          </div>
+          <div class="form-group">
+            <p class="item-type-para"><em>Note: You cannot change item type once
+                created</em></p>
+            <label for="addedit-item-type">Item Type: *</label>
+            <select class="form-control" id="addedit-item-type">
+              <option>Plaintext</option>
+              <option>HTML</option>
+              <option>JSON</option>
+              <option>XML</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="addedit-item-itemmain" class="col-form-label">Item Text:</label>
+            <textarea class="form-control" id="addedit-item-itemmain"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary add-edit-item-save-btn">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

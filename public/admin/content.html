@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Content Items - Avara Solutions Admin</title>
+  <link href="/admin/css/styles.css" rel="stylesheet" />
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <script src="/vendor/font-awesome/5.13.0/all.min.js"></script>
+  <link href="/admin/css/override.css" rel="stylesheet" />
+  <link href="/vendor/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+  <script>var currentPage = 'admincontent';</script>
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"></nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav admin-main-nav"></div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small">Logged in as:</div>
+          <span class="ausername">User</span>
+        </div>
+      </nav>
+    </div>
+    <div id="layoutSidenav_content">
+      <main style="position: relative; min-height: 200px;">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="mt-4"> </p>
+              <h1 class="mb-4">Content Library</h1>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">Content Library</li>
+              </ol>
+              <div class="card mb-4">
+                <div class="card-body">
+                  Manage your site assets and content from here
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-folder mr-1"></i>
+                  Content Folders
+                </div>
+                <div class="card-body">
+                  <div class="admin-tree-header row mb-4">
+                    <div class="col-md-12">
+                      <button class="tree-add-btn btn btn-primary" data-toggle="modal" data-target="#addEditFolderModal"
+                        data-purpose="add" title="Add new folder">
+                        <i class="fas fa-plus"></i> Add
+                      </button>
+                      <button class="tree-edit-btn btn btn-primary" data-toggle="modal"
+                        data-target="#addEditFolderModal" data-purpose="edit"
+                        title="Edit/Rename currently selected folder">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="tree-remove-btn btn btn-danger" title="Delete currently selected folder">
+                        <i class="fas fa-trash"></i> Remove
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row admin-tree-parent">
+                    <div class="col-md-12 admin-tree">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-folder-open mr-1"></i>
+                  <span class="folder-path">Content Items</span>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <button class="main-items-add-btn btn btn-primary" title="Add new item">
+                        <i class="fas fa-plus"></i> Add
+                      </button>
+                      <!-- <button class="main-items-edit-btn btn btn-primary" title="Edit currently selected item">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="main-items-remove-btn btn btn-danger" title="Delete currently selected item">
+                        <i class="fas fa-trash"></i> Remove
+                      </button> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="main-item-msg"></div>
+                      <div class="main-items-area">
+                        <div class="list-group">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div aria-live="polite" aria-atomic="true">
+          <!-- Position it -->
+          <div class="toast-parent" style="position: absolute; top: 25px; right: 25px;">
+          </div>
+        </div>
+        <div class="modal fade" id="addEditFolderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new content folder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="parent-folder-para">This new folder will be added under <strong
+                    class="parent-folder-name"></strong></p>
+                <form>
+                  <div class="form-group">
+                    <label for="folder-name" class="col-form-label">Folder name: *</label>
+                    <input type="text" class="form-control" id="folder-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="folder-desc" class="col-form-label">Folder description:</label>
+                    <textarea class="form-control" id="folder-desc"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary add-edit-save-btn">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="deleteFolderModal" tabindex="-1" role="dialog" aria-labelledby="labelDeleteModal"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="labelDeleteModal">Delete folder <strong class="delete-fldr-title"></strong>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete folder `<strong class="delete-fldr-title"></strong>` ?</p>
+                <p>All the sub folders will be deleted as well also all the content items will be lost as well.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger confirm-delete-fldr-btn">Delete</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="addEditItemModal" tabindex="-1" role="dialog"
+          aria-labelledby="addEditItemModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addEditItemModalLabel">Add/Edit item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="parent-item-para">This item will be added under folder
+                  <strong class="parent-item-name"></strong>
+                </p>
+                <form class="add-edit-item">
+                  <div class="form-group">
+                    <label for="addedit-item-name" class="col-form-label">Item name: *</label>
+                    <input type="text" class="form-control" id="addedit-item-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="addedit-item-desc" class="col-form-label">Item description:</label>
+                    <textarea class="form-control" id="addedit-item-desc"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <p class="item-type-para"><em>Note: You cannot change item type once created</em></p>
+                    <label for="addedit-item-type">Item Type: *</label>
+                    <select class="form-control" id="addedit-item-type">
+                      <option>Plaintext</option>
+                      <option>HTML</option>
+                      <option>JSON</option>
+                      <option>XML</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="addedit-item-itemmain" class="col-form-label">Item Text:</label>
+                    <textarea class="form-control" id="addedit-item-itemmain"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary add-edit-item-save-btn">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="labelDeleteItemModal"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="labelDeleteItemModal">Delete item
+                  <strong class="delete-item-title"></strong>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete item `<strong class="delete-item-title"></strong>` ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger confirm-delete-item-btn">Delete</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; CMS One 2020</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="/vendor/jquery/3.5.1/jquery-3.5.1.min.js"></script>
+  <script src="/vendor/bootstrap/4.5.0/bootstrap.bundle.min.js"></script>
+  <script src="/admin/js/scripts.js"></script>
+  <script src="/vendor/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+  <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="assets/demo/datatables-demo.js"></script>
+
+  <script src="/js/common/ajax.js"></script>
+  <script src="/js/common/browser.js"></script>
+  <script src="/js/common/app.js"></script>
+  <script src="/admin/js/app.js"></script>
+  <script src="/admin/js/admin-main.js"></script>
+  <script src="/admin/js/content-folders.js"></script>
+  <script src="/admin/js/content-items.js"></script>
+</body>
+
+</html>

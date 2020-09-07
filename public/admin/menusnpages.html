@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Menus, Footers and Pages - Avara Solutions Admin</title>
+  <link href="/admin/css/styles.css" rel="stylesheet" />
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <script src="/vendor/font-awesome/5.13.0/all.min.js"></script>
+  <link href="/admin/css/override.css" rel="stylesheet" />
+  <link href="/vendor/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+  <script>var currentPage = 'adminmenuspages';</script>
+</head>
+
+<body class="sb-nav-fixed">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"></nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav admin-main-nav"></div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small">Logged in as:</div>
+          <span class="ausername">User</span>
+        </div>
+      </nav>
+    </div>
+    <div id="layoutSidenav_content">
+      <main style="position: relative; min-height: 200px;">
+        <div class="container-fluid">
+          <div class="row sample-class">
+            <div class="col-md-12">
+              <p class="mt-4"> </p>
+              <h1 class="mb-4">Menus, Footers and Pages</h1>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">Menus, Footers and Pages</li>
+              </ol>
+              <div class="card mb-4">
+                <div class="card-body">
+                  Manage your site menu, footer and website pages
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-folder mr-1"></i>
+                  Menus, Footers and Pages
+                </div>
+                <div class="card-body">
+                  <div class="admin-tree-header row mb-4">
+                    <div class="col-md-12">
+                      <button class="tree-add-btn btn btn-primary" title="Add new folder">
+                        <i class="fas fa-plus"></i> Add
+                      </button>
+                      <button class="tree-edit-btn btn btn-primary" title="Edit/Rename currently selected folder">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="tree-remove-btn btn btn-danger" title="Delete currently selected folder">
+                        <i class="fas fa-trash"></i> Remove
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row admin-tree-parent">
+                    <div class="col-md-12 admin-tree">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-folder-open mr-1"></i>
+                  <span class="folder-path">Pages</span>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <button class="main-items-add-btn btn btn-primary" title="Add new item">
+                        <i class="fas fa-plus"></i> Add
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="main-item-msg"></div>
+                      <div class="main-items-area">
+                        <div class="list-group">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div aria-live="polite" aria-atomic="true">
+          <!-- Position it -->
+          <div class="toast-parent" style="position: absolute; top: 25px; right: 25px;">
+          </div>
+        </div>
+        <div class="modal-parent-cont"></div>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; CMS One 2020</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="/vendor/jquery/3.5.1/jquery-3.5.1.min.js"></script>
+  <script src="/vendor/bootstrap/4.5.0/bootstrap.bundle.min.js"></script>
+  <script src="/admin/js/scripts.js"></script>
+  <script src="/vendor/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+  <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="assets/demo/datatables-demo.js"></script>
+
+  <script src="/js/common/ajax.js"></script>
+  <script src="/js/common/browser.js"></script>
+  <script src="/js/common/app.js"></script>
+  <script src="/admin/js/app.js"></script>
+  <script src="/admin/js/admin-main.js"></script>
+
+  <script src="/admin/js/bootstrap-forms.js"></script>
+  <script src="/packages/bootstrap-modal/js/bootstrap-modals.js"></script>
+  
+  <script src="/admin/js/pagecontent-adv-modal.js"></script>
+  <script src="/admin/js/content-item-modal.js"></script>
+
+  <script src="/admin/js/menus-folders.js"></script>
+  <script src="/admin/js/pages-items.js"></script>
+</body>
+
+</html>
