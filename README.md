@@ -1,5 +1,5 @@
-# CMS One API
-> Simple light weight node-express based API wrapper
+# CMS One Website
+> Simple light weight node-express based CMS Website
 
 ## Installation:
 
