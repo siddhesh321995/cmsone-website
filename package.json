@@ -1,6 +1,6 @@
 {
   "name": "cmsone-website",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Simple light weight node-express based CMS Website",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/siddhesh321995/cmsone-website.git"
+  },
+  "engines": {
+    "node": "12.16.1"
   },
   "keywords": [
     "CMSOne",
@@ -20,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/siddhesh321995/cmsone-website/issues"
   },
-  "homepage": "https://github.com/siddhesh321995/cmsone-website#readme",
+  "homepage": "http://www.cmsone.site",
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "mongodb": "^3.6.1",
