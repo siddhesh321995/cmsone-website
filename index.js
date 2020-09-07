@@ -2,6 +2,7 @@
 const environments = require('./environment');
 const { MongoDBManager } = require('./db-manager/manager');
 const SessionManager = require('./session/session');
+var cookieParser = require('cookie-parser');
 var uuidv4 = require('uuid');
 
 // setup environment
@@ -62,6 +63,8 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
   });
 
   SessionManager.setCollectionName(otherConfigs.sessionCollectionName);
+
+  app.use(cookieParser());
   app.use(function (request, response, next) {
     if (request.cookies["asession"]) {
       next();
