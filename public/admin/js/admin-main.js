@@ -95,14 +95,6 @@ var getProductById = function (id) {
   }
 };
 
-var ProdProm = new Promise(function (res, rej) {
-  Ajax.get('/products/data/all.json', function (resp) {
-    resp = JSON.parse(resp);
-    allProds = resp;
-    res(resp);
-  }, rej);
-});
-
 $(document).ready(function () {
   var validPages = ['adminlogin', 'adminregister', 'adminforgotpassword',
     'adminresetpassword', 'adminconfigure'];
@@ -190,6 +182,13 @@ $(document).ready(function () {
     } else if (currentPage == 'adminlogs') {
       getLogsData();
     } else if (currentPage == 'adminreviews') {
+      var ProdProm = new Promise(function (res, rej) {
+        Ajax.get('/products/data/all.json', function (resp) {
+          resp = JSON.parse(resp);
+          allProds = resp;
+          res(resp);
+        }, rej);
+      });
       ProdProm.then(function (resp) {
         getReviewsData();
         return resp;
