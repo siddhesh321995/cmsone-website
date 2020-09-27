@@ -213,12 +213,24 @@ $(document).ready(function () {
           return;
         }
 
+        var path = window.getFolderPathById(selectedNodeId);
+        var menusplit = path.split('/Menu');
+        if (menusplit.length > 1) {
+          path = menusplit[1];
+        }
+        var footersplit = path.split('/Footer');
+        if (footersplit.length > 1) {
+          path = footersplit[1];
+        }
+        console.log(path + '/' + data.pageurl);
+
         if (modalType == 'add') {
           var reqData = {
             authtoken: getAuthToken(),
             folderid: selectedNodeId,
             name: data.pagename,
             urlfrdnlyname: data.pageurl,
+            completeurl: path + '/' + data.pageurl,
             desc: data.pagedesc,
             metaKeyword: data.pageseokeywords,
             metaDesc: data.pageseodesc
@@ -239,6 +251,7 @@ $(document).ready(function () {
             authtoken: getAuthToken(),
             name: data.pagename,
             urlfrdnlyname: data.pageurl,
+            completeurl: path + '/' + data.pageurl,
             desc: data.pagedesc,
             metaKeyword: data.pageseokeywords,
             metaDesc: data.pageseodesc,

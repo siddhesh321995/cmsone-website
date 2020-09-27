@@ -76,6 +76,7 @@ $(document).ready(function () {
               currStr = replaceAll(currStr, '{{{itemlasteditedtime}}}', '');
               currStr = replaceAll(currStr, '{{{itemtype}}}', ContentItemTypesDisplayTitles[ContentItemTypes[currItem.type]]);
               currStr = replaceAll(currStr, '{{{itemid}}}', currItem.id);
+              currStr = replaceAll(currStr, '{{{mappingid}}}', currItem.mappingid);
 
               str += currStr;
             }
@@ -85,8 +86,10 @@ $(document).ready(function () {
             pageContentAdvModal.$el.find('.page-content-modal-items-area .list-group .main-items-remove-btn').click(function (ev) {
               $(pageContentAdvModal).trigger('page-content-item-removed', { modal: pageContentAdvModal, event: ev });
               var contentItemId = $(ev.currentTarget).attr('data-itemid');
+              var mappingId = $(ev.currentTarget).attr('data-mappingid');
 
               var reqData = {
+                id: mappingId,
                 authtoken: getAuthToken(),
                 pageid: pageContentAdvModal.attrs.pageid,
                 contentid: contentItemId

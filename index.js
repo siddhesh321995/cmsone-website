@@ -4,6 +4,7 @@ const { MongoDBManager } = require('./db-manager/manager');
 const SessionManager = require('./session/session');
 var cookieParser = require('cookie-parser');
 var uuidv4 = require('uuid');
+var request = require('request');
 
 // setup environment
 environments.setup();
@@ -80,6 +81,55 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
     });
   });
 
+  let cache = {};
+  let siteInfo;
+
+  app.use(async function (req, response, next) {
+    if (cache[req.originalUrl] && cache[req.originalUrl].found == true) {
+      return response.status(200).send(cache[req.originalUrl].response);
+    } else if (cache[req.originalUrl] && cache[req.originalUrl].false == true) {
+      next();
+      return;
+    } else {
+      if (!siteInfo) {
+        siteInfo = await MongoDBManager.getInstance().getDocumentsByProm('siteinfo');
+        if (siteInfo.length == 0) {
+          next();
+          return;
+        }
+      }
+      const proto = (siteInfo[0].isHttps) ? 'https://' : 'http://';
+      request.post(
+        proto + siteInfo[0].apiurl + '/pagecontent/pagedetails',
+        {
+          json: {
+            pageurl: req.originalUrl
+          },
+        },
+        (error, res, body) => {
+          if (error) {
+            next();
+            cache[req.originalUrl] = { found: false };
+            return;
+          }
+          if (body.found) {
+            let contentstrs = '';
+            for (const content of body.pageContent) {
+              contentstrs += content.contentstr;
+            }
+            cache[req.originalUrl] = { found: true, response: contentstrs };
+            return response.status(200).send(cache[req.originalUrl].response);
+
+          } else {
+            next();
+            cache[req.originalUrl] = { found: false };
+            return;
+          }
+        }
+      )
+    }
+  });
+
   app.get('/end-session', function (request, response) {
     var sessionid = request.cookies["asession"];
 
@@ -93,6 +143,12 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
     }, (err) => {
       response.status(403).send({ message: 'Cannot complete request', details: err });
     });
+  });
+
+  app.get('/clear-cache', function (request, response) {
+    cache = {};
+    siteInfo = null;
+    response.status(200).send({ message: 'Request is complete, cache is cleared' });
   });
 };
 
