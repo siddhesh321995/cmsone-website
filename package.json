@@ -1,6 +1,6 @@
 {
   "name": "cmsone-website",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple light weight node-express based CMS Website",
   "main": "index.js",
   "scripts": {

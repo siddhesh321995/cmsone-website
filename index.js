@@ -85,7 +85,7 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
   let cache = {};
   let siteInfo;
 
-  if (otherConfigs.disableDynamicPageLoading) {
+  if (!otherConfigs.disableDynamicPageLoading) {
     app.use(async function (req, response, next) {
       if (cache[req.originalUrl] && cache[req.originalUrl].found == true) {
         return response.status(200).send(cache[req.originalUrl].response);
