@@ -23,7 +23,7 @@ const getVersion = function () {
 };
 
 /**
- * @typedef {{sessionCollectionName:string;}} SetupOptions
+ * @typedef {{sessionCollectionName:string;disableDynamicPageLoading:boolean;}} SetupOptions
  */
 
 /**
@@ -42,6 +42,7 @@ const getVersion = function () {
  */
 const setup = (app, mainConfig, otherConfigs = {}) => {
   if (otherConfigs.sessionCollectionName == void 0) { otherConfigs.sessionCollectionName = 'session'; }
+  if (otherConfigs.disableDynamicPageLoading == void 0) { otherConfigs.disableDynamicPageLoading = false; }
 
   const config = environments.envs[process.env.NODE_ENV];
   /**
@@ -84,51 +85,53 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
   let cache = {};
   let siteInfo;
 
-  app.use(async function (req, response, next) {
-    if (cache[req.originalUrl] && cache[req.originalUrl].found == true) {
-      return response.status(200).send(cache[req.originalUrl].response);
-    } else if (cache[req.originalUrl] && cache[req.originalUrl].false == true) {
-      next();
-      return;
-    } else {
-      if (!siteInfo) {
-        siteInfo = await MongoDBManager.getInstance().getDocumentsByProm('siteinfo');
-        if (siteInfo.length == 0) {
-          next();
-          return;
+  if (otherConfigs.disableDynamicPageLoading) {
+    app.use(async function (req, response, next) {
+      if (cache[req.originalUrl] && cache[req.originalUrl].found == true) {
+        return response.status(200).send(cache[req.originalUrl].response);
+      } else if (cache[req.originalUrl] && cache[req.originalUrl].false == true) {
+        next();
+        return;
+      } else {
+        if (!siteInfo) {
+          siteInfo = await MongoDBManager.getInstance().getDocumentsByProm('siteinfo');
+          if (siteInfo.length == 0) {
+            next();
+            return;
+          }
         }
-      }
-      const proto = (siteInfo[0].isHttps) ? 'https://' : 'http://';
-      request.post(
-        proto + siteInfo[0].apiurl + '/pagecontent/pagedetails',
-        {
-          json: {
-            pageurl: req.originalUrl
+        const proto = (siteInfo[0].isHttps) ? 'https://' : 'http://';
+        request.post(
+          proto + siteInfo[0].apiurl + '/pagecontent/pagedetails',
+          {
+            json: {
+              pageurl: req.originalUrl
+            },
           },
-        },
-        (error, res, body) => {
-          if (error) {
-            next();
-            cache[req.originalUrl] = { found: false };
-            return;
-          }
-          if (body.found) {
-            let contentstrs = '';
-            for (const content of body.pageContent) {
-              contentstrs += content.contentstr;
+          (error, res, body) => {
+            if (error) {
+              next();
+              cache[req.originalUrl] = { found: false };
+              return;
             }
-            cache[req.originalUrl] = { found: true, response: contentstrs };
-            return response.status(200).send(cache[req.originalUrl].response);
+            if (body.found) {
+              let contentstrs = '';
+              for (const content of body.pageContent) {
+                contentstrs += content.contentstr;
+              }
+              cache[req.originalUrl] = { found: true, response: contentstrs };
+              return response.status(200).send(cache[req.originalUrl].response);
 
-          } else {
-            next();
-            cache[req.originalUrl] = { found: false };
-            return;
+            } else {
+              next();
+              cache[req.originalUrl] = { found: false };
+              return;
+            }
           }
-        }
-      )
-    }
-  });
+        )
+      }
+    });
+  }
 
   app.get('/end-session', function (request, response) {
     var sessionid = request.cookies["asession"];
