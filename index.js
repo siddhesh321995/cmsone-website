@@ -10,9 +10,9 @@ var request = require('request');
 environments.setup();
 
 const getVersion = function () {
-  var major = 2;
-  var minor = 0;
-  var patch = 0;
+  var major = 1;
+  var minor = 1;
+  var patch = 3;
 
   return {
     version: 'v' + major + '.' + minor + '.' + patch,

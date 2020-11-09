@@ -102,6 +102,26 @@ $(document).ready(function () {
   var isAuth = false;
   var dashboardData = {};
 
+  var onLogoutClick = function onLogoutClick(e) {
+    Ajax.post(AEnvironment.LOGOUT_URL, {
+      usersessionid: getAuthToken()
+    }, function (resp) {
+      console.log('logout', resp);
+      resp = JSON.parse(resp);
+      localStorage.removeItem('usersession');
+      window.location.href = '/admin/login';
+    }, function (err) {
+      err = JSON.parse(err);
+      showToastMessage({
+        title: 'Could not log out properly!',
+        body: err.message || 'Something went wrong! but logging you out none the less'
+      });
+      localStorage.removeItem('usersession');
+      window.location.href = '/admin/login';
+    });
+    return false;
+  }
+
   getAdminNavTemplateProm.then(function (tpl) {
     $('.admin-main-nav').html(tpl);
     var path = window.location.href;
@@ -117,6 +137,7 @@ $(document).ready(function () {
     $('#sidebarToggle').click(function () {
       $('body').toggleClass('sb-sidenav-toggled');
     });
+    $('.logout-btn').click(onLogoutClick);
   }, getErrorFnc());
 
   if (currentPage == 'adminsettings') {
@@ -514,25 +535,7 @@ $(document).ready(function () {
     return false;
   });
 
-  $('.logout-btn').click(function (e) {
-    Ajax.post(AEnvironment.LOGOUT_URL, {
-      usersessionid: getAuthToken()
-    }, function (resp) {
-      console.log('logout', resp);
-      resp = JSON.parse(resp);
-      localStorage.removeItem('usersession');
-      window.location.href = '/admin/login';
-    }, function (err) {
-      err = JSON.parse(err);
-      showToastMessage({
-        title: 'Could not log out properly!',
-        body: err.message || 'Something went wrong! but logging you out none the less'
-      });
-      localStorage.removeItem('usersession');
-      window.location.href = '/admin/login';
-    });
-    return false;
-  });
+  $('.logout-btn').click(onLogoutClick);
 
   $('.login-btn').click(function (e) {
     Ajax.post(AEnvironment.LOGIN_URL, {
