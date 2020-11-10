@@ -2,6 +2,7 @@
 > Simple light weight node-express based CMS Website
 
 [![Build Status](https://travis-ci.com/siddhesh321995/cmsone-website.svg?branch=master)](https://travis-ci.com/siddhesh321995/cmsone-website)
+![Node.js CI](https://github.com/siddhesh321995/cmsone-website/workflows/Node.js%20CI/badge.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/siddhesh321995/cmsone-website/badge.svg?branch=master)](https://coveralls.io/github/siddhesh321995/cmsone-website?branch=master)
 
 ## Installation:
