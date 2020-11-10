@@ -1,6 +1,8 @@
 # CMS One Website
 > Simple light weight node-express based CMS Website
 
+[![Build Status](https://travis-ci.com/siddhesh321995/cmsone-website.svg?branch=master)](https://travis-ci.com/siddhesh321995/cmsone-website)
+
 ## Installation:
 
 ```
@@ -34,14 +36,14 @@ Main.setup(app, {
 - Navigate to /admin from browser to complete setup using GUI.
 
 ```
-    <!-- Add following scripts to your public html pages to enable tracking and analysis -->
-    <script src="/vendor/jquery/3.5.1/jquery-3.5.1.min.js"></script>
-    <script src="/js/common/polyfill.min.js"></script>
-    <script src="/js/common/ajax.js"></script>
-    <script src="/js/common/browser.js"></script>
-    <script src="/js/common/app.js"></script>
-    <script src="/js/common/event-api.js"></script>
-    <script src="/js/common/app-bootstrapper.js"></script>
+<!-- Add following scripts to your public html pages to enable tracking and analysis -->
+<script src="/vendor/jquery/3.5.1/jquery-3.5.1.min.js"></script>
+<script src="/js/common/polyfill.min.js"></script>
+<script src="/js/common/ajax.js"></script>
+<script src="/js/common/browser.js"></script>
+<script src="/js/common/app.js"></script>
+<script src="/js/common/event-api.js"></script>
+<script src="/js/common/app-bootstrapper.js"></script>
 ```
 
 ## Features:
