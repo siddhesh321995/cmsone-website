@@ -4,7 +4,7 @@
   "description": "Simple light weight node-express based CMS Website",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,13 @@
   "homepage": "http://www.cmsone.site",
   "dependencies": {
     "cookie-parser": "^1.4.5",
+    "mongo-driverify": "^1.0.2",
     "mongodb": "^3.6.1",
     "request": "^2.88.2",
     "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1",
+    "should": "^13.2.3"
   }
 }

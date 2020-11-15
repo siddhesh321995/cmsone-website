@@ -1,6 +1,6 @@
 
 const environments = require('./environment');
-const { MongoDBManager } = require('./db-manager/manager');
+const { MongoDBManager } = require('mongo-driverify');
 const SessionManager = require('./session/session');
 var cookieParser = require('cookie-parser');
 var uuidv4 = require('uuid');
@@ -160,6 +160,6 @@ module.exports = {
     setup,
     getVersion
   },
-  MongoManager: require('./db-manager/manager'),
+  MongoManager: require('mongo-driverify'),
   SessionManager
 };
