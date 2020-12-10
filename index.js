@@ -11,8 +11,8 @@ environments.setup();
 
 const getVersion = function () {
   var major = 1;
-  var minor = 1;
-  var patch = 5;
+  var minor = 5;
+  var patch = 1;
 
   return {
     version: 'v' + major + '.' + minor + '.' + patch,
