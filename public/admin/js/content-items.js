@@ -4,6 +4,7 @@ var ContentItemTypes = ACommon.EnumGenerator({
   JSON: 3,
   XML: 4
 });
+window.ContentItemTypes = ContentItemTypes;
 
 var ContentItemTypesDisplayTitles = ACommon.EnumGenerator({
   PLAIN_TEXT: 'Plaintext',
@@ -11,6 +12,8 @@ var ContentItemTypesDisplayTitles = ACommon.EnumGenerator({
   JSON: 'JSON',
   XML: 'XML'
 });
+window.ContentItemTypesDisplayTitles = ContentItemTypesDisplayTitles;
+
 var selectedItemId;
 var getItemById = function (id) {
   if (id == void 0) { id = selectedItemId; }

@@ -35,6 +35,7 @@ var getErrorFnc = function (data) {
     }
   };
 };
+window.getErrorFnc = getErrorFnc;
 
 if (currentPage != 'adminconfigure') {
   checkIfConfigured();
@@ -43,10 +44,14 @@ if (currentPage != 'adminconfigure') {
 var getItemTemplateProm = Ajax.get('/admin/templates/itemlist.html');
 var getAdminNavTemplateProm = Ajax.get('/admin/templates/sidenav.html');
 var getAdminTopNavTemplateProm = Ajax.get('/admin/templates/topnav.html');
+window.getItemTemplateProm = getItemTemplateProm;
+window.getAdminNavTemplateProm = getAdminNavTemplateProm;
+window.getAdminTopNavTemplateProm = getAdminTopNavTemplateProm;
 
 var getAuthToken = function () {
   return localStorage.getItem('usersession');
 };
+window.getAuthToken = getAuthToken;
 
 var getParameterByName = function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -81,6 +86,7 @@ var showToastMessage = function (data) {
   $('#dynamic-toast-' + _toastCount).toast({ delay: 2000 });
   $('#dynamic-toast-' + _toastCount).toast('show');
 };
+window.showToastMessage = showToastMessage;
 
 var allProds;
 window.currentItems = [];

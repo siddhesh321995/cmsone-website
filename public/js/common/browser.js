@@ -1,3 +1,5 @@
+require('./ajax');
+
 var module = window || {};
 
 (function () {

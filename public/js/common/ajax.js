@@ -3,19 +3,23 @@ window.ACommon = window.ACommon || {};
 var json = function json(str) {
   return JSON.parse(str);
 };
+window.json = json;
 
 var log = function log(data) {
   console.log(data);
   return data;
 };
+window.log = log;
 
 var escapeRegExp = function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
+window.escapeRegExp = escapeRegExp;
 
 var replaceAll = function replaceAll(str, term, replacement) {
   return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
 };
+window.replaceAll = replaceAll;
 
 var timeSince = function timeSince(date) {
   var seconds = Math.floor((new Date() - date) / 1000);
@@ -42,8 +46,10 @@ var timeSince = function timeSince(date) {
   }
   return Math.floor(seconds) + " second(s)";
 };
+window.timeSince = timeSince;
 
 var UUID_NIL = '00000000-0000-0000-0000-000000000000';
+window.UUID_NIL = UUID_NIL;
 
 ACommon.getCookie = function getCookie(cname) {
   var name = cname + "=";

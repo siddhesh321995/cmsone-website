@@ -9,6 +9,7 @@ var BForms = (function () {
   var replaceAll = function replaceAll(str, term, replacement) {
     return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
   };
+  window.replaceAll = replaceAll;
 
   var Model = function FormModel(data) {
     if (data == void 0) { data = {}; }
@@ -270,6 +271,8 @@ var BForms = (function () {
   forms.View = View;
   return forms;
 })();
+
+window.BForms = BForms;
 
 // Usage:
 /* var model = new BForms.Model({
