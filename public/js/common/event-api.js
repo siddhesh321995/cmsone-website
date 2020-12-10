@@ -1,4 +1,7 @@
+require('./app');
+
 var EventApiTracker = {};
+window.EventApiTracker = EventApiTracker;
 var currGeoLocation = '';
 
 var DISABLE_GEOLOCATION_TRACKING = true;

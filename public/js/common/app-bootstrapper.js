@@ -1,3 +1,5 @@
+require('./event-api');
+
 var _toastCount = 0;
 var showToastMessage = function (data) {
   _toastCount++;
@@ -12,6 +14,8 @@ var showToastMessage = function (data) {
     $(str).hide(2000);
   }, 3500, '#dynamic-toast-' + _toastCount);
 };
+
+window.showToastMessage = showToastMessage;
 
 $(document).ready(function () {
   console.log('CMS One running ', AEnvironment.VERSION);

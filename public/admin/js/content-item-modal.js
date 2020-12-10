@@ -4,6 +4,7 @@ var ContentItemTypes = ACommon.EnumGenerator({
   JSON: 3,
   XML: 4
 });
+window.ContentItemTypes = ContentItemTypes;
 
 var ContentItemTypesDisplayTitles = ACommon.EnumGenerator({
   PLAIN_TEXT: 'Plaintext',
@@ -11,8 +12,12 @@ var ContentItemTypesDisplayTitles = ACommon.EnumGenerator({
   JSON: 'JSON',
   XML: 'XML'
 });
+window.ContentItemTypesDisplayTitles = ContentItemTypesDisplayTitles;
 
 $(document).ready(function () {
+  if (currentPage !== "adminmenuspages") {
+    return;
+  }
   var treeData;
   var tplModalProm = Ajax.get('/admin/templates/content-modal-select.html');
   var contentModal = new BModal({

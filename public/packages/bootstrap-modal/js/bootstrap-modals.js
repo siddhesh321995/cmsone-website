@@ -8,10 +8,12 @@ var BModal = (function (bmodalConfig) {
   var escapeRegExp = function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
+  window.escapeRegExp = escapeRegExp;
 
   var replaceAll = function replaceAll(str, term, replacement) {
     return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
   };
+  window.replaceAll = replaceAll;
 
   var Modal = function BModal(data) {
     if (data == void 0) { data = {}; }
@@ -215,6 +217,8 @@ var BModal = (function (bmodalConfig) {
 
   return Modal;
 })(window.bmodalConfig || void 0);
+
+window.BModal = BModal;
 
 // Usage:
 /* var modalInst = new BModal({
