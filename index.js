@@ -5,6 +5,7 @@ const SessionManager = require('./session/session');
 var cookieParser = require('cookie-parser');
 var uuidv4 = require('uuid');
 var request = require('request');
+var fs = require('fs');
 
 // setup environment
 environments.setup();
@@ -12,7 +13,7 @@ environments.setup();
 const getVersion = function () {
   var major = 1;
   var minor = 5;
-  var patch = 1;
+  var patch = 2;
 
   return {
     version: 'v' + major + '.' + minor + '.' + patch,
@@ -21,6 +22,15 @@ const getVersion = function () {
     patch
   };
 };
+
+const page404Prom = new Promise((res, rej) => {
+  fs.readFile('public/error_pages/404.html', "utf8", function (err, data) {
+    if (err) {
+      return rej(err);
+    }
+    res(data);
+  });
+});
 
 /**
  * @typedef {{sessionCollectionName:string;disableDynamicPageLoading:boolean;}} SetupOptions
@@ -155,10 +165,34 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
   });
 };
 
+const setErrorPages = (app) => {
+  app.use(function (req, res, next) {
+    // respond with html page
+    if (req.accepts('html')) {
+      page404Prom.then((html) => {
+        res.status(404).send(html);
+      }).catch(() => {
+        res.status(404).send('Not found');
+      });
+      return;
+    }
+
+    // respond with json
+    if (req.accepts('json')) {
+      res.status(404).send({ error: 'Not found' });
+      return;
+    }
+
+    // default to plain-text. send()
+    res.type('txt').status(404).send('Not found');
+  });
+};
+
 module.exports = {
   Main: {
     setup,
-    getVersion
+    getVersion,
+    setErrorPages
   },
   MongoManager: require('mongo-driverify'),
   SessionManager
