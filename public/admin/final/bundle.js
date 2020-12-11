@@ -2699,7 +2699,7 @@ AEnvironment.SESSION_END_URL = AEnvironment.CURRENTHOST_URL + '/end-session';
 
 AEnvironment.V_MAJOR = 1;
 AEnvironment.V_MINOR = 5;
-AEnvironment.V_PATH = 0;
+AEnvironment.V_PATH = 2;
 AEnvironment.VERSION = 'v' + AEnvironment.V_MAJOR + '.' +
     AEnvironment.V_MINOR + '.' + AEnvironment.V_PATH;
 },{"./browser":17}],17:[function(require,module,exports){

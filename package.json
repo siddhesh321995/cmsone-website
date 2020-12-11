@@ -1,11 +1,12 @@
 {
   "name": "cmsone-website",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Simple light weight node-express based CMS Website",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "build": "npm run babel && npm run browserify && npm run uglifyjs",
+    "build": "npm run febuild && npm run admbuild",
+    "febuild": "npm run babel && npm run browserify && npm run uglifyjs",
     "babel": "babel public/js/common -d public/js/final",
     "browserify": "browserify public/js/final/app-bootstrapper.js -o public/js/final/bundle.js",
     "uglifyjs": "uglifyjs --compress --mangle --output public/js/final/bundle.min.js -- public/js/final/bundle.js",
