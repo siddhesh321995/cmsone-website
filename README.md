@@ -28,6 +28,9 @@ Main.setup(app, {
         EMAIL_PASSWORD: 'password'
     }
 });
+
+// Setup custom error pages
+Main.setErrorPages(app);
 ```
 
 ## Clientside setup
@@ -40,15 +43,13 @@ Main.setup(app, {
 <!-- Add following scripts to your public html pages to enable tracking and analysis -->
 <script src="/vendor/jquery/3.5.1/jquery-3.5.1.min.js"></script>
 <script src="/js/common/polyfill.min.js"></script>
-<script src="/js/common/ajax.js"></script>
-<script src="/js/common/browser.js"></script>
-<script src="/js/common/app.js"></script>
-<script src="/js/common/event-api.js"></script>
-<script src="/js/common/app-bootstrapper.js"></script>
+<script src="/js/environment.js"></script>
+<script src="/js/final/bundle.min.js"></script>
 ```
 
 ## Features:
 - Works with express.js and mongo as database.
 - Provides features like Tracking.
-- Easily extend by writing your APIs
+- Easily extend by writing your APIs.
+- Contact Us, News letter management, Custom error pages etc.
 - Works best with [CMS One API](https://github.com/siddhesh321995/cmsone-api) (backend helper for your CMS)
