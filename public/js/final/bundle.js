@@ -244,6 +244,7 @@ AEnvironment.REVIEW_API = AEnvironment.API_URL + '/review';
 AEnvironment.REVIEW_BY_API = AEnvironment.API_URL + '/review/product/{{prodid}}';
 
 AEnvironment.SESSION_END_URL = AEnvironment.CURRENTHOST_URL + '/end-session';
+AEnvironment.SESSION_START_URL = AEnvironment.CURRENTHOST_URL + '/get-session';
 
 AEnvironment.V_MAJOR = 1;
 AEnvironment.V_MINOR = 5;
@@ -325,6 +326,13 @@ var currGeoLocation = '';
 
 var DISABLE_GEOLOCATION_TRACKING = true;
 
+EventApiTracker.getSession = function getSession() {
+  return Ajax.get(AEnvironment.SESSION_START_URL).then(function (resp) {
+    window.ACommon.sessionid = ACommon.getCookie('asession');
+    return window.ACommon.sessionid;
+  });
+};
+
 EventApiTracker.checkTime = function checkTime(t) {
   if (t < 10) {
     t = "0" + t;
@@ -403,7 +411,17 @@ EventApiTracker.trackPageHits = function trackPageHits(url, pageViewEvent) {
 };
 
 EventApiTracker.trackIt = function trackIt(attr) {
-  EventApiTracker.trackPageHits(AEnvironment.EVENT_API_URL, EventApiTracker.generatePageViewEvent(attr));
+  var trackFnc = function trackFnc() {
+    EventApiTracker.trackPageHits(AEnvironment.EVENT_API_URL, EventApiTracker.generatePageViewEvent(attr));
+  };
+
+  if (!window.ACommon.sessionid) {
+    EventApiTracker.getSession().then(function () {
+      trackFnc();
+    });
+    return;
+  }
+  trackFnc();
 };
 
 EventApiTracker.EventType = ACommon.EnumGenerator({
@@ -453,4 +471,10 @@ var convertKeysToLowerCase = function convertKeysToLowerCase(obj) {
 };
 
 updateGeoLocation();
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (!window.ACommon.sessionid) {
+    EventApiTracker.getSession();
+  }
+});
 },{"./app":3}]},{},[2]);

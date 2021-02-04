@@ -24,7 +24,7 @@ $(document).ready(function () {
     9: 'Sep',
     10: 'Oct',
     11: 'Nov',
-    12: 'Dev',
+    12: 'Dec',
   };
 
   Ajax.get(AEnvironment.ANALYTICS_VISITORS_URL.replace('{{days}}', 13).replace('{{authtoken}}', getAuthToken()), function (resp) {
@@ -126,7 +126,7 @@ $(document).ready(function () {
     9: 'Sep',
     10: 'Oct',
     11: 'Nov',
-    12: 'Dev',
+    12: 'Dec',
   };
   Ajax.get(AEnvironment.ANALYTICS_ACTIVITY_URL.replace('{{days}}', 13).replace('{{authtoken}}', getAuthToken()), function (resp) {
     resp = JSON.parse(resp).data;
@@ -2696,6 +2696,7 @@ AEnvironment.REVIEW_API = AEnvironment.API_URL + '/review';
 AEnvironment.REVIEW_BY_API = AEnvironment.API_URL + '/review/product/{{prodid}}';
 
 AEnvironment.SESSION_END_URL = AEnvironment.CURRENTHOST_URL + '/end-session';
+AEnvironment.SESSION_START_URL = AEnvironment.CURRENTHOST_URL + '/get-session';
 
 AEnvironment.V_MAJOR = 1;
 AEnvironment.V_MINOR = 5;

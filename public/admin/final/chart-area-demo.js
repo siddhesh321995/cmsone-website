@@ -23,7 +23,7 @@ $(document).ready(function () {
     9: 'Sep',
     10: 'Oct',
     11: 'Nov',
-    12: 'Dev'
+    12: 'Dec'
   };
 
   Ajax.get(AEnvironment.ANALYTICS_VISITORS_URL.replace('{{days}}', 13).replace('{{authtoken}}', getAuthToken()), function (resp) {
