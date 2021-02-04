@@ -6,6 +6,13 @@ var currGeoLocation = '';
 
 var DISABLE_GEOLOCATION_TRACKING = true;
 
+EventApiTracker.getSession = function getSession() {
+  return Ajax.get(AEnvironment.SESSION_START_URL).then(function (resp) {
+    window.ACommon.sessionid = ACommon.getCookie('asession');
+    return window.ACommon.sessionid;
+  });
+};
+
 EventApiTracker.checkTime = function checkTime(t) {
   if (t < 10) {
     t = "0" + t;
@@ -85,10 +92,20 @@ EventApiTracker.trackPageHits = function trackPageHits(url, pageViewEvent) {
 };
 
 EventApiTracker.trackIt = function trackIt(attr) {
-  EventApiTracker.trackPageHits(
-    AEnvironment.EVENT_API_URL,
-    EventApiTracker.generatePageViewEvent(attr)
-  );
+  var trackFnc = function () {
+    EventApiTracker.trackPageHits(
+      AEnvironment.EVENT_API_URL,
+      EventApiTracker.generatePageViewEvent(attr)
+    );
+  };
+
+  if (!window.ACommon.sessionid) {
+    EventApiTracker.getSession().then(function () {
+      trackFnc();
+    });
+    return;
+  }
+  trackFnc();
 };
 
 EventApiTracker.EventType = ACommon.EnumGenerator({
@@ -139,3 +156,9 @@ var convertKeysToLowerCase = function convertKeysToLowerCase(obj) {
 };
 
 updateGeoLocation();
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (!window.ACommon.sessionid) {
+    EventApiTracker.getSession();
+  }
+});

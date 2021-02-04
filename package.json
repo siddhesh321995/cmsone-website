@@ -1,6 +1,6 @@
 {
   "name": "cmsone-website",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Simple light weight node-express based CMS Website",
   "main": "index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "cookie-parser": "^1.4.5",
     "mongo-driverify": "^1.0.2",
     "mongodb": "^3.6.1",
+    "promise-cache-sync": "^0.1.1",
     "request": "^2.88.2",
     "uuid": "^8.3.0"
   },

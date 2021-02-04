@@ -12,6 +12,7 @@ AEnvironment.REVIEW_API = AEnvironment.API_URL + '/review';
 AEnvironment.REVIEW_BY_API = AEnvironment.API_URL + '/review/product/{{prodid}}';
 
 AEnvironment.SESSION_END_URL = AEnvironment.CURRENTHOST_URL + '/end-session';
+AEnvironment.SESSION_START_URL = AEnvironment.CURRENTHOST_URL + '/get-session';
 
 AEnvironment.V_MAJOR = 1;
 AEnvironment.V_MINOR = 5;

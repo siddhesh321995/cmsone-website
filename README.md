@@ -35,9 +35,9 @@ Main.setErrorPages(app);
 
 ## Clientside setup
 - Copy and Paste public folder to your public root directory
-- Specify valid API_URL from public\js\common\app.js
+- Specify valid API_URL from `public\js\environment.js`
 - Add auth.json with any authkey at data/ folder. (this key will be used while configuring CMS from GUI)
-- Navigate to /admin from browser to complete setup using GUI.
+- Navigate to `/admin` from browser to complete setup using GUI.
 
 ```
 <!-- Add following scripts to your public html pages to enable tracking and analysis -->

@@ -77,7 +77,7 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
   SessionManager.setCollectionName(otherConfigs.sessionCollectionName);
 
   app.use(cookieParser());
-  app.use(function (request, response, next) {
+  /* app.use(function (request, response, next) {
     if (request.cookies["asession"]) {
       next();
       return;
@@ -90,6 +90,18 @@ const setup = (app, mainConfig, otherConfigs = {}) => {
     }, () => {
       next();
     });
+  }); */
+
+  app.get('/get-session', (request, response) => {
+    if (request.cookies["asession"]) {
+      response.status(200).send({ message: 'Session already present' });
+      return;
+    }
+
+    var sessionid = uuidv4.v4();
+    response.cookie("asession", sessionid);
+    SessionManager.createSession(sessionid);
+    response.status(200).send({ message: 'Request is complete' });
   });
 
   let cache = {};
